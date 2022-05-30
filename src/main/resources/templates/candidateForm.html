@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}"></title>
+</head>
+<body>
+<h3 th:text="${title}"></h3>
+
+<div th:if="${success != null}" th:text="${success}"></div>
+
+<form th:action="@{/candidate/form}" th:object="${candidate}" method="post" enctype="multipart/form-data">
+
+    <div>
+        <label for="name">Nombre</label>
+        <div>
+            <input type="text" id="name" th:field="*{name}">
+            <small th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></small>
+        </div>
+    </div>
+
+    <div>
+        <label for="politicalParty">Partido</label>
+        <div>
+            <input type="text" id="politicalParty" th:field="*{politicalParty}">
+            <small th:if="${#fields.hasErrors('politicalParty')}" th:errors="*{politicalParty}"></small>
+        </div>
+    </div>
+
+    <div>
+        <label for="photocandidate">Foto</label>
+        <div>
+            <input type="file" id="photocandidate" name="photocandidate">
+        </div>
+    </div>
+
+    <div>
+        <label for="flag">Bandera</label>
+        <div>
+            <input type="file" id="flag" name="flag">
+        </div>
+    </div>
+
+    <div>
+        <div>
+            <input type="submit" value="Crear">
+        </div>
+    </div>
+</form>
+
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}"></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous">
+</head>
+<body style="background: #34495E">
+
+
+    <h1 class="text text-center text-info p-2" th:text="${title}"></h1>
+    <h1 class="text text-center text-info">Escuela Ricardo Vargas Murillo</h1>
+    <div class="row row-cols-1 row-cols-md-6 g-9 px-5 py-5">
+        <div class="col" th:each="candidate : ${candidates}">
+            <div class="card" style="max-width: 80%">
+                <img th:src="@{'/uploads/' + ${candidate.photo}}" class="card-img-top "  th:alt="${candidate.photo}">
+                <div th:if="${candidate.politicalFlag != null}" class="d-flex justify-content-center p-3 bg-dark">
+                    <img th:src="@{'/uploads/' + ${candidate.politicalFlag}}"  style="max-width: 80%">
+                </div>
+                <div class="card-body bg-dark">
+                    <h3 class="card-title text text-white text-center" th:text="${candidate.name}"></h3>
+                    <h5 class="card-title text text-white text-center" th:text="${candidate.politicalParty}"></h5>
+                    <div class="d-flex justify-content-center">
+                        <h6 class="card-title text text-white text-center" th:text="'Votos: ' + ${candidate.numbersOfVotes}"></h6>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-end p-4">
+        <h5 class="text text-white" th:text="'Votos Totales: ' +  ${totalVotes}"></h5>
+    </div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+</html>
